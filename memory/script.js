@@ -31,10 +31,14 @@ function fillGame(arrContent) {
           if (correntCardStep[0].content !== correntCardStep[1].content) {
             correntCardStep.forEach((el) => flip(el));
           }
+          correntCardStep.forEach((el) =>
+            el.element.classList.remove("current")
+          );
           correntCardStep.length = 0;
         }
         correntCardStep.push(card);
         flip(card);
+        card.element.classList.add("current");
       }
     }
   });

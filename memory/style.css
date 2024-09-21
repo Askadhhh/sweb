@@ -1,11 +1,15 @@
 .card {
   font-size: 60px;
   display: inline-block;
-  border: 1px solid black;
+  border: 5px solid black;
   padding: 20px;
   border-radius: 20px;
   margin: 5px;
 }
 .gameField {
   background-color: aquamarine;
+}
+
+.current {
+  border-color: orange;
 }
