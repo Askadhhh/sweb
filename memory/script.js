@@ -1,6 +1,7 @@
 import { duplicateElements, shufle, flip } from "./helper.js";
 
 const gameField = document.getElementById("gameField");
+const countClicks = document.getElementById("countClicks");
 
 fillGame(["⭐", "😭", "🚀", "😶‍🌫️", "❤️"]);
 
@@ -19,6 +20,7 @@ function createCard(textCard) {
  */
 function fillGame(arrContent) {
   const cards = [];
+  let countClick = 0;
   const correntCardStep = [];
   const duplicatedContent = duplicateElements(arrContent);
   const shuffledContent = shufle(duplicatedContent);
@@ -27,6 +29,8 @@ function fillGame(arrContent) {
     const card = cards.find((element) => element.element === event.target);
     if (card) {
       if (card.isOpen === false) {
+        countClick += 1;
+        countClicks.textContent = `количество кликов: ${countClick}`;
         if (correntCardStep.length === 2) {
           if (correntCardStep[0].content !== correntCardStep[1].content) {
             correntCardStep.forEach((el) => flip(el));

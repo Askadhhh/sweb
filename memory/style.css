@@ -7,9 +7,28 @@
   margin: 5px;
 }
 .gameField {
-  background-color: aquamarine;
+  background-color: rgb(118, 229, 192);
+  border-radius: 20px;
 }
 
 .current {
   border-color: orange;
+}
+
+.counter {
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgb(74, 195, 155);
+  color: aliceblue;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.conteiner {
+  max-width: 720px;
+  margin: auto;
+}
+body {
+  background-color: rgb(62, 106, 91);
 }
