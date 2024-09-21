@@ -1,4 +1,4 @@
-import { duplicateElements, shufle } from "./helper.js";
+import { duplicateElements, shufle, flip } from "./helper.js";
 
 const gameField = document.getElementById("gameField");
 
@@ -19,6 +19,7 @@ function createCard(textCard) {
  */
 function fillGame(arrContent) {
   const cards = [];
+  const correntCardStep = [];
   const duplicatedContent = duplicateElements(arrContent);
   const shuffledContent = shufle(duplicatedContent);
 
@@ -26,7 +27,14 @@ function fillGame(arrContent) {
     const card = cards.find((element) => element.element === event.target);
     if (card) {
       if (card.isOpen === false) {
-        card.element.textContent = card.content;
+        if (correntCardStep.length === 2) {
+          if (correntCardStep[0].content !== correntCardStep[1].content) {
+            correntCardStep.forEach((el) => flip(el));
+          }
+          correntCardStep.length = 0;
+        }
+        correntCardStep.push(card);
+        flip(card);
       }
     }
   });

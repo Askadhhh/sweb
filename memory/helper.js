@@ -19,3 +19,14 @@ export const shufle = (arr) => {
   });
   return result;
 };
+
+export const flip = (card) => {
+  if (card.isOpen === false) {
+    card.element.textContent = card.content;
+    card.isOpen = true;
+  } else {
+    card.element.textContent = "x";
+
+    card.isOpen = false;
+  }
+};
