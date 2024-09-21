@@ -2,7 +2,7 @@ import { duplicateElements, shufle, flip } from "./helper.js";
 
 const gameField = document.getElementById("gameField");
 
-fillGame(["1", "2", "4", "5", "7"]);
+fillGame(["⭐", "😭", "🚀", "😶‍🌫️", "❤️"]);
 
 function createCard(textCard) {
   const newCard = document.createElement("div");
@@ -52,7 +52,7 @@ function fillGame(arrContent) {
     cards.push({
       isOpen: false,
       content: shuffledContent[i],
-      element: createCard("x"),
+      element: createCard("❌"),
     });
   }
 }

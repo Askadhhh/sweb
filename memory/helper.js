@@ -25,7 +25,7 @@ export const flip = (card) => {
     card.element.textContent = card.content;
     card.isOpen = true;
   } else {
-    card.element.textContent = "x";
+    card.element.textContent = "❌";
 
     card.isOpen = false;
   }
