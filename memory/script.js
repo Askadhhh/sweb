@@ -1,3 +1,5 @@
+import { duplicateElements, shufle } from "./helper.js";
+
 const gameField = document.getElementById("gameField");
 
 fillGame(["1", "2", "4", "5", "7"]);
@@ -17,10 +19,11 @@ function createCard(textCard) {
  */
 function fillGame(arrContent) {
   const cards = [];
+  const duplicatedContent = duplicateElements(arrContent);
+  const shuffledContent = shufle(duplicatedContent);
 
   gameField.addEventListener("click", (event) => {
     const card = cards.find((element) => element.element === event.target);
-    console.log(card, cards);
     if (card) {
       if (card.isOpen === false) {
         card.element.textContent = card.content;
@@ -32,18 +35,12 @@ function fillGame(arrContent) {
     alert("Карт должно быть минимум 2");
     return;
   }
-  for (let i = 0; i < arrContent.length; i++) {
+
+  for (let i = 0; i < shuffledContent.length; i++) {
     cards.push({
       isOpen: false,
-      content: arrContent[i],
-      element: createCard("x"),
-    });
-    cards.push({
-      isOpen: false,
-      content: arrContent[i],
+      content: shuffledContent[i],
       element: createCard("x"),
     });
   }
-
-  console.log(cards);
 }
