@@ -1,25 +1,28 @@
 .card {
   font-size: 60px;
   display: inline-block;
-  border: 5px solid black;
+  border: 5px solid #7796cb;
   padding: 20px;
   border-radius: 20px;
   margin: 5px;
+  background-color: #7796cb;
 }
 .gameField {
-  background-color: rgb(118, 229, 192);
+  background-color: #576490;
   border-radius: 20px;
 }
 
 .current {
-  border-color: orange;
+  border-color: #c9cad9;
 }
 
 .counter {
-  border: 3px solid black;
+  width: auto;
+  margin-top: 10px;
+  border: 3px solid #7796cb;
   border-radius: 10px;
   text-align: center;
-  background-color: rgb(74, 195, 155);
+  background-color: #7796cb;
   color: aliceblue;
   font-weight: 700;
   font-size: 30px;
@@ -30,5 +33,5 @@
   margin: auto;
 }
 body {
-  background-color: rgb(62, 106, 91);
+  background-color: #576490;
 }
