@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        width: 200px;
+        height: 300px;
+        perspective: 1000px; /* Задает глубину перспективы */
+      }
+
+      .card-inner {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      .card:hover .card-inner {
+        transform: rotateY(
+          180deg
+        ); /* Поворот карточки по оси Y при наведении */
+      }
+
+      .card-front,
+      .card-back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: hidden; /* Скрывает обратную сторону */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: white;
+      }
+
+      .card-front {
+        background-color: #007bff;
+      }
+
+      .card-back {
+        background-color: #28a745;
+        transform: rotateY(180deg); /* Переворачивает заднюю сторону */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <!-- Содержимое передней стороны карточки -->
+          <h2>Front Side</h2>
+        </div>
+        <div class="card-back">
+          <!-- Содержимое задней стороны карточки -->
+          <h2>Back Side</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
