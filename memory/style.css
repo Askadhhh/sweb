@@ -6,6 +6,8 @@
   border-radius: 20px;
   margin: 5px;
   background-color: #7796cb;
+  user-select: none;
+  cursor: pointer;
 }
 .gameField {
   background-color: #576490;
