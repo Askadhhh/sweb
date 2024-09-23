@@ -1,4 +1,5 @@
 .card {
+  transition: all 0.2s;
   font-size: 60px;
   display: inline-block;
   border: 5px solid #7796cb;
@@ -8,6 +9,10 @@
   background-color: #7796cb;
   user-select: none;
   cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.1);
+  border-color: #c9cad9;
 }
 .gameField {
   background-color: #576490;
