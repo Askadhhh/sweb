@@ -3,7 +3,7 @@ import { duplicateElements, shufle, flip } from "./helper.js";
 const gameField = document.getElementById("gameField");
 const countClicks = document.getElementById("countClicks");
 
-fillGame(["⭐", "😭", "🚀", "😶‍🌫️", "❤️"]);
+fillGame(["⭐", "😭", "🚀", "🤣", "❤️"]);
 
 function createCard(textCard) {
   const newCard = document.createElement("div");
