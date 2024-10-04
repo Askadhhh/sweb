@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    html {
+      border: 5px solid #000000f7;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    body {
+      border: 5px solid #962f2ff7;
+      background-color: rgba(78, 1, 160, 0.617);
+      margin: 0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .hole {
+      display: flex;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 5px solid rgb(6, 145, 215);
+      align-items: center;
+      justify-content: center;
+    }
+    .mole {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .moleActive {
+      background-color: blue;
+    }
+    .counter {
+      color: aliceblue;
+      font-size: large;
+      padding: 5px;
+    }
+  </style>
+  <body>
+    <div class="counter"></div>
+    <div class="container"></div>
+  </body>
+  <script>
+    const counterPoints = document.querySelector(".counter");
+    const container = document.querySelector(".container");
+    const hole = '<div class="hole"><div class="mole"></div></div>'.repeat(25);
+
+    let countPoints = 0;
+    let showMoleTimeId;
+
+    render();
+    showMole();
+    showCounter();
+
+    setTimeout(() => {
+      clearTimeout(showMoleTimeId);
+      document.body.innerHTML = `<div class="gameOver">Game Over, кол-во очков: ${countPoints}</div>`;
+    }, 5000);
+
+    container.addEventListener("click", (event) => {
+      if (event.target.classList.contains("moleActive")) {
+        countPoints += 1;
+        showCounter();
+        event.target.classList.remove("moleActive");
+        clearTimeout(showMoleTimeId);
+        showMole();
+        console.log("кол-во очков:", countPoints);
+      }
+    });
+    function showCounter() {
+      counterPoints.innerHTML = `кол-во очков: ${countPoints}`;
+    }
+    function showMole() {
+      const moles = container.querySelectorAll(".mole");
+
+      const randomIndex = getRandomElementIndex(moles.length);
+      const activeMole = moles[randomIndex];
+      activeMole.classList.add("moleActive");
+      showMoleTimeId = setTimeout(() => {
+        activeMole.classList.remove("moleActive");
+        showMole();
+      }, 1000);
+    }
+    function getRandomElementIndex(arrLength) {
+      return Math.floor(Math.random() * arrLength);
+    }
+    function render() {
+      container.innerHTML = hole;
+    }
+  </script>
+</html>
