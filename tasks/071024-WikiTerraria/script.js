@@ -139,5 +139,10 @@ searchInput.addEventListener("input", (event) => {
     (el) =>
       el.name.toLowerCase().search(event.currentTarget.value.toLowerCase()) >= 0
   );
-  renderCards(result, containerCard);
+
+  if (result.length === 0) {
+    containerCard.innerHTML = "<div>Результаты поиска не найдены</div>";
+  } else {
+    renderCards(result, containerCard);
+  }
 });
