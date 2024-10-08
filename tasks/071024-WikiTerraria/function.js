@@ -1,4 +1,4 @@
-export default function renderCards(cards, elContainer) {
+export const renderCards = (cards, elContainer) => {
   const htmlCards = cards.map((el) => {
     const result = `<div class="card">
           <h3>${el.name}</h3>
@@ -15,4 +15,18 @@ export default function renderCards(cards, elContainer) {
     return result;
   });
   elContainer.innerHTML = htmlCards.join("");
-}
+};
+export const sortBosses = (cards, sortValue) => {
+  cards.sort((a, b) => {
+    [b, a] = [a, b];
+    if (b[sortValue] > a[sortValue]) {
+      return 1;
+    }
+    if (b[sortValue] < a[sortValue]) {
+      return -1;
+    }
+    if (b[sortValue] === a[sortValue]) {
+      return 0;
+    }
+  });
+};

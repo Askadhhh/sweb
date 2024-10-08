@@ -1,4 +1,4 @@
-import renderCards from "./function.js";
+import { renderCards, sortBosses } from "./function.js";
 const terrariaBosses = {
   KingSlime: {
     name: "King Slime",
@@ -130,6 +130,8 @@ const terrariaBosses = {
 
 const containerCard = document.querySelector(".container");
 const searchInput = document.querySelector("#search");
+const selectElement = document.getElementById("sortBosses");
+
 const allCardBosses = Object.values(terrariaBosses);
 
 renderCards(allCardBosses, containerCard);
@@ -145,4 +147,11 @@ searchInput.addEventListener("input", (event) => {
   } else {
     renderCards(result, containerCard);
   }
+});
+selectElement.addEventListener("change", function () {
+  const selectedValue = selectElement.value;
+  sortBosses(allCardBosses, selectedValue);
+  renderCards(allCardBosses, containerCard);
+
+  console.log(selectedValue); // Выведет выбранное значение
 });
