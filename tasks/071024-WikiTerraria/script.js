@@ -135,8 +135,9 @@ const allCardBosses = Object.values(terrariaBosses);
 renderCards(allCardBosses, containerCard);
 
 searchInput.addEventListener("input", (event) => {
-  const result = allCardBosses.filter((el) =>
-    el.name.toLowerCase().startsWith(event.currentTarget.value.toLowerCase())
+  const result = allCardBosses.filter(
+    (el) =>
+      el.name.toLowerCase().search(event.currentTarget.value.toLowerCase()) >= 0
   );
   renderCards(result, containerCard);
 });
