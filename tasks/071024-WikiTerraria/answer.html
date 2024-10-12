@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Игра в Память</title>
+    <style>
+      /* Стили для body */
+      body {
+        font-family: Arial, sans-serif; /* Шрифт */
+        display: flex; /* Используем флексбокс для выравнивания */
+        flex-direction: column; /* Устанавливаем вертикальную ориентацию */
+        align-items: center; /* Центрируем элементы по горизонтали */
+      }
+      h1 {
+        margin-bottom: 20px; /* Отступ снизу для заголовка */
+      }
+      .grid {
+        display: grid; /* Используем CSS Grid для отображения карт */
+        grid-template-columns: repeat(4, 100px); /* 4 колонки по 100 пикселей */
+        gap: 10px; /* Праздность между ячейками */
+      }
+      .card {
+        width: 100px; /* Ширина карты */
+        height: 100px; /* Высота карты */
+        background-color: #ccc; /* Цвет фона карты */
+        display: flex; /* Используем флексбокс для центрирования содержимого */
+        align-items: center; /* Вертикальное выравнивание */
+        justify-content: center; /* Горизонтальное выравнивание */
+        font-size: 24px; /* Размер шрифта */
+        cursor: pointer; /* Указатель курсора при наведении */
+      }
+      .flipped {
+        background-color: #fff; /* Цвет фона перевернутой карты */
+      }
+      .matched {
+        background-color: #99ff99; /* Цвет фона для найденных пар */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Игра в Память</h1>
+    <div class="grid"></div>
+    <!-- Контейнер для карт -->
+    <button onclick="startGame()">Начать Игру</button>
+    <!-- Кнопка для начала игры -->
+
+    <script>
+      // Массив значений карт
+      const cardValues = ["A", "B", "C", "D", "E", "F", "G", "H"];
+      let cards = []; // Массив для хранения игровых карт
+      let firstCard = null; // Индекс первой перевернутой карты
+      let secondCard = null; // Индекс второй перевернутой карты
+      let lockBoard = false; // Блокировка доски для предотвращения дальнейших кликов
+
+      // Функция для начала игры
+      function startGame() {
+        // Создаем карты, дублируем значения, перемешиваем и оборачиваем в объекты
+        cards = [...cardValues, ...cardValues]
+          .sort(() => Math.random() - 0.5)
+          .map((value) => ({
+            value,
+            flipped: false, // Начальное состояние карты (не перевернута)
+            matched: false, // Начальное состояние (не найдено)
+          }));
+        renderCards(); // Отрисовка карт на экране
+      }
+
+      // Функция для отрисовки карт
+      function renderCards() {
+        const grid = document.querySelector(".grid"); // Находим контейнер для карт
+        grid.innerHTML = ""; // Очищаем контейнер
+        cards.forEach((card, index) => {
+          const cardElement = document.createElement("div"); // Создаем элемент для каждой карты
+          cardElement.classList.add("card"); // Добавляем класс карты
+          // Проверяем состояние карты для отображения
+          if (card.flipped) {
+            cardElement.classList.add("flipped");
+            cardElement.textContent = card.value; // Показываем значение, если карта перевернута
+          } else if (card.matched) {
+            cardElement.classList.add("matched");
+
+            cardElement.textContent = card.value; // Показываем значение, если карта найдена
+          } else {
+            cardElement.textContent = ""; // Пустое значение, если карта не перевернута
+          }
+          cardElement.addEventListener("click", () => flipCard(index)); // Добавляем обработчик клика на карту
+          grid.appendChild(cardElement); // Добавляем карту в контейнер
+        });
+      }
+
+      // Функция для переворачивания карты
+      function flipCard(index) {
+        // Проверяем, можно ли перевернуть карту
+        if (lockBoard || cards[index].flipped || cards[index].matched) return;
+
+        cards[index].flipped = true; // Устанавливаем состояние карты как flipped
+        renderCards(); // Обновляем отображение карт
+
+        if (!firstCard) {
+          firstCard = index; // Устанавливаем первую перевернутую карту
+        } else {
+          secondCard = index; // Устанавливаем вторую перевернутую карту
+          lockBoard = true; // Блокируем доску, чтобы предотвратить дальнейшие клики
+
+          setTimeout(checkForMatch, 1000); // Проверяем на совпадение через 1 секунду
+        }
+      }
+
+      // Функция для проверки на совпадение
+      function checkForMatch() {
+        const firstCardValue = cards[firstCard].value; // Значение первой карты
+        const secondCardValue = cards[secondCard].value; // Значение второй карты
+
+        // Проверяем, совпадают ли значения
+        if (firstCardValue === secondCardValue) {
+          cards[firstCard].matched = true; // Устанавливаем состояние как найденное
+          cards[secondCard].matched = true; // Устанавливаем состояние как найденное
+        } else {
+          cards[firstCard].flipped = false; // Сбрасываем первую карту
+          cards[secondCard].flipped = false; // Сбрасываем вторую карту
+        }
+        resetBoard(); // Сбрасываем доску после проверки
+      }
+
+      // Функция для сброса состояния доски
+      function resetBoard() {
+        [firstCard, secondCard] = [null, null]; // Сбрасываем индексы перевернутых карт
+        lockBoard = false; // Разблокируем доску
+        renderCards(); // Обновляем отображение карт
+      }
+    </script>
+  </body>
+</html>
