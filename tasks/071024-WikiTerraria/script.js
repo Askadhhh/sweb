@@ -1,4 +1,4 @@
-import { renderCards, sortBosses } from "./function.js";
+import { renderCards, sortBosses, loadData } from "./function.js";
 const terrariaBosses = {
   KingSlime: {
     name: "King Slime",
@@ -132,7 +132,9 @@ const containerCard = document.querySelector(".container");
 const searchInput = document.querySelector("#search");
 const selectElement = document.getElementById("sortBosses");
 
-const allCardBosses = Object.values(terrariaBosses);
+// const allCardBosses = Object.values(terrariaBosses);
+const allCardBosses = loadData();
+console.log(allCardBosses);
 
 renderCards(allCardBosses, containerCard);
 

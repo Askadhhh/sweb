@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="addBoss.js" type="module" defer></script>
+  </head>
+  <body>
+    <form id="createBoss">
+      <div>
+        <label for="name">Введите имя боса =></label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Wall of Flesh"
+          required
+          autofocus
+        />
+      </div>
+      <div>
+        <label for="health">Введите Кол-во здоровья => </label>
+        <input
+          type="number"
+          name="health"
+          id="health"
+          placeholder="100500"
+          min="1"
+          max="999999"
+          required
+        />
+      </div>
+      <div>
+        <label for="damage">Введите урон босса => </label>
+        <input
+          type="number"
+          name="damage"
+          id="damage"
+          min="1"
+          max="9999"
+          placeholder="100500"
+          required
+        />
+      </div>
+      <div>
+        <fieldset>
+          <legend>Злой биом</legend>
+          <label for="corruption">Порча => </label>
+          <input
+            type="radio"
+            name="evilBiom"
+            id="corruption"
+            value="corruption"
+          />
+
+          <label for="crimson">Багрянец => </label>
+          <input type="radio" name="evilBiom" id="crimson" value="crimson" />
+
+          <label for="any">Любой => </label>
+          <input type="radio" name="evilBiom" id="any" checked value="any" />
+        </fieldset>
+      </div>
+      <div>
+        <label for="preHardmode">доступен до сложного режима => </label>
+        <input type="checkbox" name="preHardmode" id="preHardmode" checked />
+      </div>
+      <div>
+        <label for="biome">Биомы где находятся боссы => </label>
+        <select name="biome" id="biome">
+          <option value="Surface">Surface</option>
+          <option value="Corruption">Corruption</option>
+          <option value="Underground Hallow">Underground Hallow</option>
+        </select>
+      </div>
+      <div>
+        <label for="description">Описание боссов => </label>
+        <br />
+        <textarea
+          name="description"
+          id="description"
+          rows="5"
+          cols="50"
+          required
+        ></textarea>
+      </div>
+      <input type="submit" value="Создать босса" />
+    </form>
+    <a href="./index.html">посмотреть всех боссов</a>
+  </body>
+</html>

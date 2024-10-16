@@ -7,6 +7,7 @@ export const renderCards = (cards, elContainer) => {
             <li>damage: ${el.damage}</li>
             <li>biome: ${el.biome}</li>
             <li>preHardmode: ${el.preHardmode}</li>
+            <li>evilBiome: ${el.evilBiom}</li>
           </ul>
           <p>
           ${el.description}
@@ -29,4 +30,14 @@ export const sortBosses = (cards, sortValue) => {
       return 0;
     }
   });
+};
+
+export const saveData = (bossArray) => {
+  localStorage.setItem("bossData", JSON.stringify(bossArray));
+};
+
+// Функция для загрузки данных из localStorage
+export const loadData = () => {
+  const data = localStorage.getItem("bossData");
+  return data ? JSON.parse(data) : []; // Если данных нет, возвращаем пустой массив
 };
