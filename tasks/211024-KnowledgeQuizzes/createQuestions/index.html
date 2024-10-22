@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Создание вопросов</title>
+  </head>
+  <script src="script.js" defer></script>
+  <body>
+    <form>
+      <textarea
+        name="title"
+        id="title"
+        placeholder="Введите текст вопроса"
+        rows="5"
+        cols="40"
+      >
+В чем смысл жизни</textarea
+      >
+      <div id="containerAnswer">
+        <div>
+          <label>
+            <input type="radio" name="answer" />закапываться в снег
+          </label>
+          <input type="button" value="Удалить" />
+        </div>
+        <div>
+          <label> <input type="radio" name="answer" checked />42 </label>
+          <input type="button" value="Удалить" />
+        </div>
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Введите вариант ответа"
+          id="creatingAResponse"
+        />
+        <input type="button" value="Добавить" id="createAnswer" />
+      </div>
+      <input type="button" value="Создать вопрос" id="createQuestion" />
+    </form>
+  </body>
+</html>
