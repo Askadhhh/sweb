@@ -1,10 +1,17 @@
 const conteinerQuestion = document.querySelector("#conteinerQuestions");
 const questionForm = document.querySelector("#questionForm");
+const questionProgress = document.querySelector("#questionProgress");
 
 const questions = getQuestions();
 
 let currentQuestionIndex = 0;
 let points = 0;
+
+renderQuestionProgress(
+  currentQuestionIndex + 1,
+  questions.length,
+  questionProgress
+);
 renderQuestion(questions[currentQuestionIndex], conteinerQuestion);
 
 questionForm.addEventListener("submit", (event) => {
@@ -23,6 +30,11 @@ questionForm.addEventListener("submit", (event) => {
   if (currentQuestionIndex >= questions.length) {
     document.body.innerHTML = `<p>Кол-во правильных ответов: ${points} из ${questions.length}.</p>`;
   } else {
+    renderQuestionProgress(
+      currentQuestionIndex + 1,
+      questions.length,
+      questionProgress
+    );
     renderQuestion(questions[currentQuestionIndex], conteinerQuestion);
   }
 
@@ -95,4 +107,7 @@ function shufle(arr) {
     }
   });
   return result;
+}
+function renderQuestionProgress(current, count, container) {
+  container.innerHTML = `${current} задание из ${count}`;
 }
