@@ -7,37 +7,56 @@
   </head>
   <script src="script.js" defer></script>
   <body>
-    <form>
+    <form id="createQuestionForm">
       <textarea
         name="title"
         id="title"
         placeholder="Введите текст вопроса"
         rows="5"
         cols="40"
+        required
       >
 В чем смысл жизни</textarea
       >
+
       <div id="containerAnswer">
         <div>
-          <label>
-            <input type="radio" name="answer" />закапываться в снег
-          </label>
-          <input type="button" value="Удалить" />
+          <input type="radio" name="currectAnswer" required />
+          <input
+            type="text"
+            name="answers"
+            value="закапаться в снег"
+            required
+          />
+          <input class="deleteButton" type="button" value="Удалить" />
         </div>
         <div>
-          <label> <input type="radio" name="answer" checked />42 </label>
-          <input type="button" value="Удалить" />
+          <input type="radio" name="currectAnswer" required />
+          <input type="text" name="answers" value="пить какао" required />
+          <input class="deleteButton" type="button" value="Удалить" />
+        </div>
+        <div>
+          <input type="radio" name="currectAnswer" required />
+          <input type="text" name="answers" value="42" required />
+          <input class="deleteButton" type="button" value="Удалить" />
         </div>
       </div>
+    </form>
+
+    <form id="addAnswerForm">
       <div>
         <input
+          name="newTextAnswer"
           type="text"
           placeholder="Введите вариант ответа"
-          id="creatingAResponse"
+          required
         />
-        <input type="button" value="Добавить" id="createAnswer" />
+        <input type="submit" value="Добавить" />
       </div>
-      <input type="button" value="Создать вопрос" id="createQuestion" />
     </form>
+
+    <div>
+      <input form="createQuestionForm" type="submit" value="Создать вопрос" />
+    </div>
   </body>
 </html>

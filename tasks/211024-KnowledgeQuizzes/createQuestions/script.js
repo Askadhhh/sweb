@@ -1,41 +1,52 @@
-const text = document.querySelector("#title");
+const addAnswerForm = document.querySelector("#addAnswerForm");
 const containerAnswer = document.querySelector("#containerAnswer");
-const correctAnswer = containerAnswer.querySelectorAll('input[type="radio"]');
-const createAnswer = document.querySelector("#createAnswer");
-const creatingAResponse = document.querySelector("#creatingAResponse");
-const createQuestion = document.querySelector("#createQuestion");
+const createQuestionForm = document.querySelector("#createQuestionForm");
 
+// Добавление нового варианта ответа
+addAnswerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+
+  const text = formData.get("newTextAnswer").trim();
+
+  containerAnswer.innerHTML += `<div>
+          <input type="radio" name="currectAnswer" required />
+          <input
+            type="text"
+            name="answers"
+            value="${text}"
+            required
+          />
+          <input class="deleteButton" type="button" value="Удалить" />
+        </div>`;
+
+  event.target.reset();
+});
+
+// Удаление нового варианта ответа
 containerAnswer.addEventListener("click", (event) => {
-  const answers = containerAnswer.querySelectorAll("div");
-  const deliteAnsewrs = containerAnswer.querySelectorAll(
-    'input[type="button"]'
-  );
-  const delite = [...deliteAnsewrs].filter((el) => el === event.target);
-
-  if (delite[0]) {
-    const indexDeliteAnswer = [...deliteAnsewrs].findIndex(
-      (el) => el === delite[0]
-    );
-    answers[indexDeliteAnswer].remove();
+  if (event.target.classList.contains("deleteButton")) {
+    const divElement = event.target.closest("div");
+    if (divElement) {
+      divElement.remove();
+    }
   }
 });
 
-createAnswer.addEventListener("click", (event) => {
-  const allAnswers =
-    containerAnswer.innerHTML +
-    `<div><label> <input type="radio" name="answer" />${creatingAResponse.value} </label><input type="button" value="Удалить" /></div>`;
-  containerAnswer.innerHTML = allAnswers;
-  creatingAResponse.value = "";
-});
+// Создание вопроса
+createQuestionForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-createQuestion.addEventListener("click", (event) => {
-  const answers = containerAnswer.querySelectorAll("div");
-  const correctAnswer = containerAnswer.querySelectorAll('input[type="radio"]');
+  const formData = new FormData(event.target);
 
-  const question = {
-    title: text.value,
-    answers: [...answers].map((el) => el.innerText),
-    correctAnswer: [...correctAnswer].findIndex((el) => el.checked),
+  const newQuestion = {
+    title: formData.get("title"),
+    answers: formData.getAll("answers"),
+    correctAnswer: [
+      ...containerAnswer.querySelectorAll('input[type="radio"]'),
+    ].findIndex((radio) => radio.checked),
   };
-  console.log(question);
+
+  console.log(newQuestion);
 });
