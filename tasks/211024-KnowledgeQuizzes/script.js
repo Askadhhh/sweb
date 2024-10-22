@@ -2,7 +2,7 @@ const conteinerQuestion = document.querySelector("#conteinerQuestions");
 const questionForm = document.querySelector("#questionForm");
 const questionProgress = document.querySelector("#questionProgress");
 
-const questions = getQuestions();
+const questions = getQuestions(true);
 
 let currentQuestionIndex = 0;
 let points = 0;
@@ -53,8 +53,8 @@ function renderQuestion(question, conteiner) {
 
   conteiner.innerHTML = titleHtml + answersHtml;
 }
-function getQuestions() {
-  return [
+function getQuestions(shouldShuffle = false) {
+  const questions = [
     {
       title: "Что делает оператор **?",
       answers: [
@@ -94,6 +94,11 @@ function getQuestions() {
       correctAnswer: 0,
     },
   ];
+  if (!shouldShuffle) {
+    return questions;
+  } else {
+    return shufle(questions);
+  }
 }
 function shufle(arr) {
   const result = arr.map((el) => el);
