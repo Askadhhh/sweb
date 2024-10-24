@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Создание вопросов</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
-  <script src="script.js" defer></script>
   <body>
+    <form id="createTestForm">
+      <textarea
+        name="title"
+        rows="5"
+        cols="40"
+        placeholder="Введите название теста"
+        required
+      ></textarea>
+    </form>
     <form id="createQuestionForm">
       <textarea
         name="title"
@@ -34,6 +44,18 @@
 
     <div>
       <input form="createQuestionForm" type="submit" value="Создать вопрос" />
+    </div>
+    <div id="containerQuestions">
+      <!-- <div class="questionCard">
+        <h3>Что такое?</h3>
+        <ul>
+          <li>вариант а</li>
+          <li>вариант б</li>
+        </ul>
+      </div> -->
+    </div>
+    <div>
+      <input type="submit" value="Создать тест" form="createTestForm" />
     </div>
   </body>
 </html>

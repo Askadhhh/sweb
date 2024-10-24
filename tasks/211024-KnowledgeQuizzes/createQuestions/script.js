@@ -1,8 +1,12 @@
+const dataName = "tests";
+
+const tests = loadData(dataName);
+
 const addAnswerForm = document.querySelector("#addAnswerForm");
 const containerAnswer = document.querySelector("#containerAnswer");
 const createQuestionForm = document.querySelector("#createQuestionForm");
-
-addAnswer();
+const containerQuestions = document.querySelector("#containerQuestions");
+const createTestForm = document.querySelector("#createTestForm");
 
 // Добавление нового варианта ответа
 addAnswerForm.addEventListener("submit", (event) => {
@@ -28,6 +32,7 @@ containerAnswer.addEventListener("click", (event) => {
 });
 
 // Создание вопроса
+let answersArr = [];
 createQuestionForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -54,6 +59,33 @@ createQuestionForm.addEventListener("submit", (event) => {
     }),
     correctAnswer: formData.get("correctAnswer"),
   };
+  answersArr.push(newQuestion);
+  event.target.reset();
+  containerAnswer.innerHTML = "";
+  renderQuestions(answersArr, containerQuestions);
+  console.log(answersArr);
+});
+
+// Создание теста
+createTestForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (answersArr.length === 0) {
+    alert("Балбес создай вопросы!");
+    return;
+  }
+  const formData = new FormData(event.target);
+
+  const test = {
+    id: getId(),
+    title: formData.get("title"),
+    questions: answersArr,
+  };
+  tests.push(test);
+  answersArr.length = 0;
+  event.target.reset();
+  containerQuestions.innerHTML = "";
+  saveData(tests, dataName);
+  console.log(test);
 });
 
 function addAnswer(text = "") {
@@ -81,4 +113,39 @@ function getId() {
     36
   )}-${randomNumberB.toString(36)}-${randomNumberC.toString(36)}`;
   return id;
+}
+
+function renderQuestions(questions, el) {
+  console.log("Массив вопросов ->", questions);
+
+  const renderLiAnswers = (answers, correctAnswer) => {
+    return answers
+      .map((answer) => {
+        console.log(answer, "<- Вариант ответа");
+        return `<li>${answer.id === correctAnswer && "* "}${answer.text}</li>`;
+      })
+      .join("");
+  };
+
+  const result = questions
+    .map((question) => {
+      console.log(question, "<- Вопрос");
+
+      return `<div class="questionCard">
+    <h3>${question.title}</h3>
+    <ul>${renderLiAnswers(question.answers, question.correctAnswer)}</ul>
+  </div>`;
+    })
+    .join("");
+
+  el.innerHTML = result;
+}
+function saveData(array, name) {
+  localStorage.setItem(name, JSON.stringify(array));
+}
+
+// Функция для загрузки данных из localStorage
+function loadData(name) {
+  const data = localStorage.getItem(name);
+  return data ? JSON.parse(data) : []; // Если данных нет, возвращаем пустой массив
 }
