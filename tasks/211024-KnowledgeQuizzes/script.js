@@ -43,7 +43,10 @@ function renderSelectTest() {
   const optionHtml = state.tests
     .map((test) => `<option value="${test.id}" label="${test.title}"></option>`)
     .join("");
-  document.body.innerHTML = `<div id="selectTestContainer">
+  document.body.innerHTML = `
+    <a href="./createQuestions/index.html">Создать тест</a>
+  
+  <div id="selectTestContainer">
       <form id='selectTestForm'>
         <label>
           Выберите тест:
