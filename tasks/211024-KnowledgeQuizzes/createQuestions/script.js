@@ -78,7 +78,7 @@ createTestForm.addEventListener("submit", (event) => {
   const test = {
     id: getId(),
     title: formData.get("title"),
-    questions: answersArr,
+    questions: [...answersArr],
   };
   tests.push(test);
   answersArr.length = 0;
