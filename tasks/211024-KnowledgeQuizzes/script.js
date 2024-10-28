@@ -1,8 +1,12 @@
+"use strict";
+import { saveData, loadData, getId } from "./assets/js/helper.js";
+
 const dataName = "tests";
 const state = {
   dataName,
   tests: loadData(dataName),
   selectedTest: null,
+  answersTest: null,
   currentQuestionIndex: 0,
   points: 0,
 };
@@ -72,8 +76,17 @@ function renderSelectTest() {
       const test = state.tests.find(
         (test) => test.id === dataForm.get("testId")
       );
+
       if (test) {
         state.selectedTest = test;
+        // state.answersTest = {
+        //   testId: state.selectedTest.id /* id теста */,
+        //   startDate: Date.now() /* Время начала теста Date.now() */,
+        //   endDate: null /* Время начала теста Date.now() */,
+        //   answers: [],
+        // };
+
+        console.log(state.answersTest);
       } else {
         alert("Тест не нашелся");
       }
@@ -83,6 +96,13 @@ function renderSelectTest() {
   }
 }
 function renderTestList() {
+  state.answersTest = {
+    id: getId(),
+    testId: state.selectedTest.id /* id теста */,
+    startDate: Date.now() /* Время начала теста Date.now() */,
+    endDate: null /* Время начала теста Date.now() */,
+    answers: [],
+  };
   state.currentQuestionIndex = 0;
   state.points = 0;
   document.body.innerHTML = `<div id="testContainer">
@@ -119,10 +139,22 @@ function renderTestList() {
       state.points += 1;
     }
 
+    state.answersTest.answers.push({
+      questionId: state.selectedTest.questions[state.currentQuestionIndex].id,
+      answerId: formDataObject.answer,
+    });
+
     state.currentQuestionIndex += 1;
 
     if (state.currentQuestionIndex >= state.selectedTest.questions.length) {
-      testContainer.innerHTML = `<p>Кол-во правильных ответов: ${state.points} из ${state.selectedTest.questions.length}.</p>`;
+      // testContainer.innerHTML = `<p>Кол-во правильных ответов: ${state.points} из ${state.selectedTest.questions.length}.</p>`;
+      state.answersTest.endDate = Date.now();
+      testContainer.innerHTML = `<pre><code>${JSON.stringify(
+        state.answersTest,
+        null,
+        2
+      )}</code></pre>`;
+      pushTestResult(state.answersTest);
     } else {
       renderQuestionProgress(
         state.currentQuestionIndex + 1,
@@ -160,12 +192,10 @@ function renderTestList() {
     conteinerQuestion
   );
 }
-function saveData(array, name) {
-  localStorage.setItem(name, JSON.stringify(array));
-}
+function pushTestResult(testResult) {
+  const keyData = "testResults";
+  const data = loadData(keyData);
+  data.push(testResult);
 
-// Функция для загрузки данных из localStorage
-function loadData(name) {
-  const data = localStorage.getItem(name);
-  return data ? JSON.parse(data) : []; // Если данных нет, возвращаем пустой массив
+  saveData(data, keyData);
 }
