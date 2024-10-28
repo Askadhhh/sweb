@@ -45,6 +45,7 @@ function renderSelectTest() {
     .join("");
   document.body.innerHTML = `
     <a href="./createQuestions/index.html">Создать тест</a>
+    <a href="./imortTest/index.html">Импортировать тест</a>
   
   <div id="selectTestContainer">
       <form id='selectTestForm'>
@@ -115,6 +116,8 @@ function renderTestList() {
         state.selectedTest.questions[state.currentQuestionIndex].correctAnswer
       }`
     ) {
+      console.log("-------------", formDataObject);
+
       state.points += 1;
     }
 
