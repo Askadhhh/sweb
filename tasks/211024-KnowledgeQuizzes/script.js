@@ -112,9 +112,7 @@ function renderTestList() {
 
     if (
       formDataObject.answer ===
-      `${
-        state.selectedTest.questions[state.currentQuestionIndex].correctAnswer
-      }`
+      state.selectedTest.questions[state.currentQuestionIndex].correctAnswer
     ) {
       console.log("-------------", formDataObject);
 
