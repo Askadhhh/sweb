@@ -10,7 +10,6 @@ const state = {
   currentQuestionIndex: 0,
   points: 0,
 };
-console.log(state);
 
 renderSelectTest();
 
@@ -85,13 +84,10 @@ function renderSelectTest() {
         //   endDate: null /* Время начала теста Date.now() */,
         //   answers: [],
         // };
-
-        console.log(state.answersTest);
       } else {
         alert("Тест не нашелся");
       }
       renderTestList();
-      console.log(test);
     });
   }
 }
@@ -136,8 +132,6 @@ function renderTestList() {
       formDataObject.answer ===
       state.selectedTest.questions[state.currentQuestionIndex].correctAnswer
     ) {
-      console.log("-------------", formDataObject);
-
       state.points += 1;
     }
 
@@ -159,7 +153,6 @@ function renderTestList() {
       );
       testContainer.innerHTML = `<p>Кол-во правильных ответов: ${countPoint} из ${state.selectedTest.questions.length}.</p>`;
       state.answersTest.endDate = Date.now();
-      console.log(countPoint);
 
       testContainer.innerHTML += `<div id="testContainer">
       
@@ -206,8 +199,6 @@ function renderTestList() {
         conteinerQuestion
       );
     }
-
-    console.log(formDataObject);
   });
 
   //начать тест заного

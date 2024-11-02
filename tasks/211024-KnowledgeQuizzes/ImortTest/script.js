@@ -7,7 +7,6 @@ importJsonTestForm.addEventListener("submit", (event) => {
   try {
     const test = JSON.parse(textAreaValue);
     if (validateTest(test)) {
-      console.log("импорт успешен");
       const finalTest = replaceAllIds(test);
       document.body.innerHTML += `<pre><code>${JSON.stringify(
         finalTest,
@@ -20,7 +19,6 @@ importJsonTestForm.addEventListener("submit", (event) => {
     } else {
       throw new Error("формату jsona не соответсвует");
     }
-    console.log(test);
   } catch (error) {
     alert(`Ошибка импорта: ${error.message}`);
   }
