@@ -147,13 +147,52 @@ function renderTestList() {
     state.currentQuestionIndex += 1;
 
     if (state.currentQuestionIndex >= state.selectedTest.questions.length) {
-      // testContainer.innerHTML = `<p>Кол-во правильных ответов: ${state.points} из ${state.selectedTest.questions.length}.</p>`;
+      const countPoint = state.answersTest.answers.reduce(
+        (accumulator, currentValue, index) =>
+          currentValue.answerId ===
+          state.selectedTest.questions[index].correctAnswer
+            ? ++accumulator
+            : accumulator,
+        0
+      );
+      testContainer.innerHTML = `<p>Кол-во правильных ответов: ${countPoint} из ${state.selectedTest.questions.length}.</p>`;
       state.answersTest.endDate = Date.now();
-      testContainer.innerHTML = `<pre><code>${JSON.stringify(
-        state.answersTest,
-        null,
-        2
-      )}</code></pre>`;
+      console.log(countPoint);
+
+      testContainer.innerHTML += `<div id="testContainer">
+      
+        <h2>${state.selectedTest.title}</h2>
+        <div>
+          ${state.selectedTest.questions
+            .map((question, index) => {
+              const answerQuStyle =
+                question.correctAnswer ===
+                state.answersTest.answers[index].answerId
+                  ? `border:3px solid green`
+                  : `border:3px solid red`;
+              return `<div style="${answerQuStyle}"><p>${question.title}</p>
+            <ul>
+            ${question.answers
+              .map((answer) =>
+                answer.id === state.answersTest.answers[index].answerId
+                  ? `<li><strong>${answer.text}</strong></li>`
+                  : `<li>${answer.text}</li>`
+              )
+              .join("")}
+          </ul>
+          </div>
+            `;
+            })
+            .join("")}
+          
+        </div>
+      
+    </div>`;
+      //`<pre><code>${JSON.stringify(
+      //   state.answersTest,
+      //   null,
+      //   2
+      // )}</code></pre>`;
       pushTestResult(state.answersTest);
     } else {
       renderQuestionProgress(
