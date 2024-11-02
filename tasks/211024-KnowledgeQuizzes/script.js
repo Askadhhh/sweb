@@ -105,7 +105,9 @@ function renderTestList() {
   };
   state.currentQuestionIndex = 0;
   state.points = 0;
-  document.body.innerHTML = `<div id="testContainer">
+  document.body.innerHTML = `
+  <h2>${state.selectedTest.title}</h2>
+  <div id="testContainer">
       <div id="questionProgress"></div>
       <form id="questionForm">
         <div id="conteinerQuestions"></div>
@@ -161,7 +163,6 @@ function renderTestList() {
 
       testContainer.innerHTML += `<div id="testContainer">
       
-        <h2>${state.selectedTest.title}</h2>
         <div>
           ${state.selectedTest.questions
             .map((question, index) => {
