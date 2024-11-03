@@ -10,16 +10,17 @@
   <body>
     <div>
       <a href="./addBoss.html" class="createBosess">Создать босса </a>
+      <input type="search" id="search" autofocus />
+      <label for="sortBosses" class="sortCardBosses">Сортировка по:</label>
+      <select id="sortBosses" name="sortBosses">
+        <option value="default">default</option>
+        <option value="health">health</option>
+        <option value="damage">damage</option>
+        <option value="biome">biome</option>
+        <option value="preHardmode">preHardmode</option>
+      </select>
     </div>
-    <input type="search" id="search" autofocus />
-    <label for="sortBosses">Сортировка по:</label>
-    <select id="sortBosses" name="sortBosses">
-      <option value="default">default</option>
-      <option value="health">health</option>
-      <option value="damage">damage</option>
-      <option value="biome">biome</option>
-      <option value="preHardmode">preHardmode</option>
-    </select>
+
     <div class="container">
       <!-- <div class="card">
         <h3>King Slime</h3>

@@ -4,38 +4,59 @@
   flex-wrap: wrap;
 }
 .card {
-  transition: all 0.2s;
-
+  transition: all 0.4s;
+  font-family: Impact, fantasy;
+  font-size: 20px;
   margin: 10px 10px 10px 0px;
   width: 200px;
-  border: 5px solid #d3ee98;
-  background-color: #a0d683;
+  border: 5px solid #c692b6;
+  background-color: #a07cbd;
+  color: #cba3e2;
 }
 .card:hover {
-  transform: scale(1.1);
-  background-color: #d3ee98;
+  border-radius: 5%;
+  transform: scale(0.9);
+  background-color: #a07cbd;
+}
+.sortCardBosses {
+  color: #cba3e2;
+  font-size: large;
+  font-family: Impact, fantasy;
 }
 .createBosess {
-  transition: all 0.2s;
-
-  border: 5px solid #d3ee98;
-  background-color: #feff9f;
-  color: rgb(0, 0, 0);
+  transition: all 0.4s;
+  font-family: Impact, fantasy;
+  font-size: large;
+  border: 5px solid #c692b6;
+  background-color: #a07cbd;
+  color: #cba3e2;
   padding: 1em 1.5em;
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 10px;
+  margin-right: 20px;
+  border-radius: 10%;
 }
 .createBosess:hover {
-  background-color: #d3ee98;
+  border-radius: 30%;
+  background-color: #a07cbd;
 }
 .card h3 {
   text-align: center;
+  font-family: null;
 }
 .card p {
   text-align: center;
 }
 body {
-  background-color: #72bf78;
+  font-family: Arial, sans-serif;
+  background: #7b5d8f;
+  background-attachment: fixed; /* Фиксирует фон, чтобы он не двигался при прокрутке */
+  background-size: cover; /* Растягивает фон по всей странице */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Минимальная высота страницы */
 }
