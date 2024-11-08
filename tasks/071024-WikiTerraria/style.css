@@ -5,19 +5,19 @@
   justify-content: space-evenly;
 }
 .card {
-  transition: all 0.4s;
-  font-family: Impact, fantasy;
+  transition: all 0.3s;
+  font-family: Andale Mono, monospace;
   font-size: 20px;
   margin: 10px 10px 10px 10px;
   width: 200px;
-  border: 5px solid #c692b6;
-  background-color: #a07cbd;
-  color: #cba3e2;
+
+  background-color: #ab886d;
+  color: #e4e0e1;
 }
 .card:hover {
-  border-radius: 5%;
-  transform: scale(0.9);
-  background-color: #a07cbd;
+  border: 5px solid #d6c0b3;
+
+  transform: scale(1);
 }
 .sortCardBosses {
   color: #cba3e2;
@@ -29,7 +29,7 @@
   font-family: Impact, fantasy;
   font-size: large;
   border: 5px solid #c692b6;
-  background-color: #a07cbd;
+  background-color: #ab886d;
   color: #cba3e2;
   padding: 1em 1.5em;
   text-decoration: none;
@@ -41,7 +41,6 @@
 }
 .createBosess:hover {
   border-radius: 30%;
-  background-color: #a07cbd;
 }
 .card h3 {
   text-align: center;
@@ -52,7 +51,7 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background: #7b5d8f;
+  background: #493628;
   background-attachment: fixed; /* Фиксирует фон, чтобы он не двигался при прокрутке */
   background-size: cover; /* Растягивает фон по всей странице */
   color: #333;
