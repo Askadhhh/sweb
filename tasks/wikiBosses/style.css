@@ -1,0 +1,109 @@
+/* Основные настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #a8e6cf, #81c784);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Заголовок */
+header {
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #00695c;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Панель управления */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls input,
+.controls select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #b0bec5;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.controls input:focus,
+.controls select:focus {
+  border-color: #00695c;
+}
+
+.controls button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #00796b;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:hover {
+  background-color: #004d40;
+}
+
+/* Карточки боссов */
+.boss-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #f1f8e9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: #00796b;
+  margin-bottom: 10px;
+}
+
+.card ul {
+  list-style: none;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card ul li {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+}
